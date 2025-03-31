@@ -1,7 +1,7 @@
 timeunit 1ns;
 timeprecision 1ps;
 
-module subneg #(parameter int WIDTH = 8)(
+module rssb #(parameter int WIDTH = 8)(
     logic input clk, rst
     );
 
@@ -46,15 +46,20 @@ module subneg #(parameter int WIDTH = 8)(
     );
 
     mux #(WIDTH = 8) mux2_1(
-        .in1(out_data),
-        .in2(out_inc),
+        .in1(out_inc1),
+        .in2(out_inc2),
         .sel(sel_pc),
         .out(out_mux)
     );
 
-    inc #(WIDTH = 8) incr(
+    inc1 #(WIDTH = 8) incr1(
         .in(out_pc),
         .out(out_inc)
+    );
+
+    inc2 #(WIDTH = 8) incr2(
+        .in(out_pc),
+        .out(out_inc2)
     );
     
     mem_rom rom(
