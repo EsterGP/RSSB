@@ -1,7 +1,9 @@
 timeunit 1ns;
 timeprecision 1ps;
 
-module register #(WIDTH = 8) (
+module register #(
+    parameter WIDTH = 8
+) (
     input logic clk,
     input logic rst,
     input logic write,

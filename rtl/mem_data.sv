@@ -11,28 +11,26 @@ module mem_data #(
     input logic [WIDTH-1:0] address,
     output logic [WIDTH-1:0] out
 );
-
-    register #(WIDTH = 8) reg_data(
-        .clk(clk),
-        .rst(rst),
-        .in(),
-        .out()
-    );
+    logic out_rom, out_ram;
 
     mux #(WIDTH = 8) mux2_1(
-        .in1(out_data),
-        .in2(out_inc),
-        .sel(sel_pc),
-        .out(out_mux)
+        .in1(out_ram),
+        .in2(out_rom),
+        .sel(address[WIDTH-1]),
+        .out(out)
     );
 
     mem_rom rom(
-        .clk(clk),
-        .in_pc(out_pc),
+        .address(address),
         .out_rom(out_rom)
     );
     mem_ram ram(
-
+        .clk(clk),
+        .rst(rst),
+        .write(write),
+        .address(address),
+        .in(in),
+        .out(out_ram)
     );
     
 endmodule
