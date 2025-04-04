@@ -1,3 +1,6 @@
+timeunit 1ns;
+timeprecision 1ps;
+
 module reg_mem #(
     parameter WIDTH = 8
 ) (
