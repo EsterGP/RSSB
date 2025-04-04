@@ -29,5 +29,8 @@ module mem_data #(
         .in_pc(out_pc),
         .out_rom(out_rom)
     );
+    mem_ram ram(
+
+    );
     
 endmodule
