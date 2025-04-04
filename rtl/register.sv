@@ -4,7 +4,7 @@ timeprecision 1ps;
 module register #(WIDTH = 8) (
     input logic clk,
     input logic rst,
-    logic en,
+    input logic write,
     input logic signed [WIDTH - 1 :0] in,
     output logic signed [WIDTH - 1 :0] out
 );
@@ -12,7 +12,7 @@ module register #(WIDTH = 8) (
     always_ff @(posedge clk  or posedge rst) begin
         if(rst)
             out <= '0;
-        else if(en)
+        else if(write)
             out <= in;
         else
             out <= out;

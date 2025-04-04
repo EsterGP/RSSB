@@ -7,10 +7,11 @@ module control(
     input logic clk,
     input logic rst,
     input logic neg,
+    output logic sel_pc,
+    output logic sel_mem
     output logic write_op1,
     output logic write_acc,
     output logic write_mem,
-    output logic sel_pc,
     output logic write_pc
 );
 

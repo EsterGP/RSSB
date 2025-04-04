@@ -10,6 +10,6 @@ module mux #(
     output logic [WIDTH-1:0] out
 );
 
-    assign out = (sel) ? in2 : in1;
+    assign out = (sel) ? in1 : in2;
     
 endmodule
