@@ -20,11 +20,12 @@ module mem_data #(
         .out(out)
     );
 
-    mem_rom rom(
+    mem_rom #(WIDTH = 8) rom(
         .address(address),
         .out_rom(out_rom)
     );
-    mem_ram ram(
+
+    mem_ram #(WIDTH = 8) ram(
         .clk(clk),
         .rst(rst),
         .write(write),
