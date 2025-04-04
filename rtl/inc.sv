@@ -1,7 +1,7 @@
 timeunit 1ns;
 timeprecision 1ps;
 
-module inc1 #(
+module inc #(
     parameter int WIDTH = 8
 ) (
     input logic signed [WIDTH-1:0] in,
