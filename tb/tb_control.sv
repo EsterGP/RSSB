@@ -5,10 +5,11 @@ module tb_control;
     logic clk;
     logic rst;
     logic neg;
-    logic write_op1;
-    logic write_op2;
-    logic write_mem;
     logic sel_pc;
+    logic sel_mem;
+    logic write_op1;
+    logic write_acc;
+    logic write_mem;
     logic write_pc;
 
     control dut (
@@ -16,9 +17,10 @@ module tb_control;
         .rst(rst),
         .neg(neg),
         .write_op1(write_op1),
-        .write_op2(write_op2),
+        .write_acc(write_acc),
         .write_mem(write_mem),
         .sel_pc(sel_pc),
+        .sel_mem(sel_mem),
         .write_pc(write_pc)
     );
 
@@ -30,11 +32,11 @@ module tb_control;
         rst = 1;
         #20 rst = 0;
 
-        for (int i = 0; i < 100; i++) begin
+        for (int i = 0; i < 10; i++) begin
             $display("Iteração: %d clk = %d, rst = %d, neg = %d",
                         i, clk, rst, neg);
-            $display("\nwrite_op1: %d write_op2 = %d, write_mem = %d, sel_pc = %d, write_pc = %d",
-                        write_op1, write_op2, write_mem, sel_pc, write_pc);
+            $display("\nsel_pc = %d, sel_mem = %d, write_op1: %d write_acc = %d, write_mem = %d, write_pc = %d",
+                        sel_pc, sel_mem, write_op1, write_acc, write_mem, write_pc);
 
             #20;
 
