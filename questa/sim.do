@@ -2,9 +2,8 @@ if {[file isdirectory work]} { vdel -all -lib work }
 vlib work
 vmap work work
 
-vlog ../rtl/control.sv
-vlog ../tb/tb_control.sv
-vsim -voptargs=+acc work.tb_control
+vlog -sv ../rtl/*.sv ../tb/tb_top.sv
+vsim -voptargs=+acc work.tb_top
 
-do wave_control.do
+do wave.do
 run -all

@@ -1,10 +1,14 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate /tb_mux/clk
-add wave -noupdate /tb_mux/sel
-add wave -noupdate /tb_mux/in1
-add wave -noupdate /tb_mux/in2
-add wave -noupdate /tb_mux/out
+add wave -noupdate -radix decimal /tb_top/WIDTH
+add wave -noupdate -radix binary /tb_top/clk
+add wave -noupdate -radix binary /tb_top/rst
+add wave -noupdate -radix decimal /tb_top/i
+add wave -noupdate -radix decimal /tb_top/oacc
+add wave -noupdate -radix decimal /tb_top/omem
+add wave -noupdate -radix decimal /tb_top/oop1
+add wave -noupdate -radix decimal /tb_top/opc
+add wave -noupdate -radix decimal /tb_top/osub
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {0 ps} 0}
 quietly wave cursor active 0
@@ -22,4 +26,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {1 ns}
+WaveRestoreZoom {259050 ps} {260050 ps}
