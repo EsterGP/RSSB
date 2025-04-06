@@ -42,7 +42,7 @@ module control(
                 write_acc = 0;
                 write_mem = 0;
                 write_pc  = 0;
-                next_state = state;
+                next_state = E1;
             end
 
             E1: begin
@@ -52,7 +52,7 @@ module control(
                 write_acc = 1;
                 write_mem = 1;
                 write_pc  = 1;
-                next_state = state;
+                next_state = E0;
             end
             default: next_state = E0;
         endcase
