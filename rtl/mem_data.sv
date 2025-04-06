@@ -2,7 +2,7 @@ timeunit 1ns;
 timeprecision 1ps;
 
 module mem_data #(
-    parameter WIDTH = 8;
+    parameter WIDTH = 8
 ) (
     input logic clk,
     input logic rst,
@@ -13,19 +13,19 @@ module mem_data #(
 );
     logic out_rom, out_ram;
 
-    mux #(WIDTH = 8) mux2_1(
+    mux #(.WIDTH(WIDTH)) mux2_1(
         .in1(out_ram),
         .in2(out_rom),
         .sel(address[WIDTH-1]),
         .out(out)
     );
 
-    mem_rom #(WIDTH = 8) rom(
+    mem_rom #(.WIDTH(WIDTH)) rom(
         .address(address),
         .out_rom(out_rom)
     );
 
-    mem_ram #(WIDTH = 8) ram(
+    mem_ram #(.WIDTH(WIDTH)) ram(
         .clk(clk),
         .rst(rst),
         .write(write),

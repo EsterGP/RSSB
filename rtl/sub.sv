@@ -12,7 +12,7 @@ module sub #(
     logic [WIDTH-1:0] temp;
 
     assign temp = in1-in2;
-    assign neg  = temp;
+    assign out  = temp;
 
     //assign temp = (out<0) ? 1 : 0;
     assign neg = temp[WIDTH-1];

@@ -1,9 +1,17 @@
 timeunit 1ns;
 timeprecision 1ps;
 
-module rssb #(parameter int WIDTH = 8)(
-    logic input clk, rst
-    );
+module rssb #(
+    parameter int WIDTH = 8
+)(
+    input  logic clk,
+    input logic rst,
+    output logic [WIDTH-1:0] oacc,
+    output logic [WIDTH-1:0] opc,
+    output logic [WIDTH-1:0] oop1,
+    output logic [WIDTH-1:0] omem,
+    output logic [WIDTH-1:0] osub
+);
 
     //criar os sinais internos e conectar corretamente
     logic [WIDTH-1:0] out_mux_pc;   //f3
@@ -13,6 +21,7 @@ module rssb #(parameter int WIDTH = 8)(
     logic [WIDTH-1:0] out_inc2;     //f0
     logic [WIDTH-1:0] out_mem;      //f2
     logic [WIDTH-1:0] out_op1;      //f4
+    logic [WIDTH-1:0] out_acc;      //
     logic [WIDTH-1:0] out_sub;      //f7
     logic neg;
     logic write_pc;
@@ -22,66 +31,66 @@ module rssb #(parameter int WIDTH = 8)(
     logic sel_pc;
     logic sel_mem;
 
-    register #(WIDTH = 8) pc(
+    register #(.WIDTH(WIDTH)) pc(
         .clk(clk),
         .rst(rst),
         .write(write_pc),
-        .in(out_mux),
+        .in(out_mux_pc),
         .out(out_pc)
     );
 
-    inc #(WIDTH = 8) incr1(
+    inc #(.WIDTH(WIDTH)) incr1(
         .in(out_pc),
         .out(out_inc1)
     );
 
-    inc #(WIDTH = 8) incr2(
+    inc #(.WIDTH(WIDTH)) incr2(
         .in(out_inc1),
         .out(out_inc2)
     );
 
-    mux #(WIDTH = 8) mux_pc(
+    mux #(.WIDTH(WIDTH)) mux_pc(
         .in1(out_inc1),
         .in2(out_inc2),
         .sel(sel_pc),
         .out(out_mux_pc)
     );
 
-    register #(WIDTH = 8) op1(
+    register #(.WIDTH(WIDTH)) op1(
         .clk(clk),
         .rst(rst),
         .write(write_op1),
-        .in(out_data),
+        .in(out_mem),
         .out(out_op1)
     );
 
-    register #(WIDTH = 8) acc(
+    register #(.WIDTH(WIDTH)) acc(
         .clk(clk),
         .rst(rst),
         .write(write_acc),
-        .in(out_data),
+        .in(out_mem),
         .out(out_acc)
     );
 
-    sub #(WIDTH = 8) subtract(
+    sub #(.WIDTH(WIDTH)) subtract(
         .in1(out_mem),
         .in2(out_acc),
         .neg(neg),
         .out(out_sub)
     );
 
-    mux #(WIDTH = 8) mux_mem(
+    mux #(.WIDTH(WIDTH)) mux_mem(
         .in1(out_pc),
         .in2(out_op1),
         .sel(sel_mem),
         .out(out_mux_mem)
     );
 
-    mem_data data(
+    mem_data #(.WIDTH(WIDTH)) data(
         .clk(clk),
         .rst(rst),
         .write(write_mem),
-        .address(out_mux),
+        .address(out_mux_mem),
         .in(out_sub),
         .out(out_mem)
     );
@@ -97,5 +106,11 @@ module rssb #(parameter int WIDTH = 8)(
         .write_mem(write_mem),
         .write_pc(write_pc)
     );
-    
-endmodule: subneg
+
+    assign opc = out_pc;
+    assign omem = out_mem;
+    assign oop1 = out_op1;
+    assign oacc = out_acc;
+    assign osub = out_sub;
+
+endmodule: rssb
