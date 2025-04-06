@@ -34,7 +34,7 @@ module tb_top;
         rst = 1;
         #20 rst = 0;
 
-        for (i = 0; i < 10; i++) begin
+        for (i = 0; i < 50; i++) begin
             $display("Iteração: %d clk = %d, rst = %d",
                         i, clk, rst);
             $display("\nout_pc = %d, out_mem = %d, out_op1: %d out_sub = %d, out_acc = %d",
