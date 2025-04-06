@@ -9,7 +9,7 @@ module mem_ram #(
     input logic write,
     input logic [WIDTH-1:0] address,
     input logic [WIDTH-1:0] in,
-    output logic [WIDTH-1:0] out
+    output logic signed [WIDTH-1:0] out
 );
     wire [WIDTH-1:0] q00, q01, q10, q11, t0, t1;
 	wire e00, e01, e10, e11;

@@ -50,8 +50,8 @@ module rssb #(
     );
 
     mux #(.WIDTH(WIDTH)) mux_pc(
-        .in1(out_inc1),
-        .in2(out_inc2),
+        .in1(out_inc2),
+        .in2(out_inc1),
         .sel(sel_pc),
         .out(out_mux_pc)
     );

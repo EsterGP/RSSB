@@ -9,7 +9,7 @@ module mem_data #(
     input logic write,
     input logic [WIDTH-1:0] in,
     input logic [WIDTH-1:0] address,
-    output logic [WIDTH-1:0] out
+    output logic signed [WIDTH-1:0] out
 );
     logic [WIDTH-1:0] out_rom, out_ram;
 

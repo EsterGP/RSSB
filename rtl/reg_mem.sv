@@ -7,9 +7,9 @@ module reg_mem #(
     input logic clk,
     input logic rst,
     input logic write,
-	input logic [7:0] init, 
-    input logic [7:0] in,
-    output logic [7:0] out
+	input logic [WIDTH-1:0] init, 
+    input logic [WIDTH-1:0] in,
+    output logic signed [WIDTH-1:0] out
     );
 
     always_ff @(posedge clk or posedge rst) begin
@@ -17,7 +17,5 @@ module reg_mem #(
             out <= init;
         else if(write)
             out <= in;
-        //else
-            //out <= out;
     end
 endmodule

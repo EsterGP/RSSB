@@ -5,7 +5,7 @@ module mem_rom #(
     parameter WIDTH = 8
 ) (
     input logic [WIDTH-1:0] address,
-    output logic [WIDTH-1:0] out_rom
+    output logic signed [WIDTH-1:0] out_rom
 );
 
     assign out_rom =
