@@ -9,12 +9,11 @@ module sub #(
     output logic neg,
     output logic signed [WIDTH-1:0] out
 );
-    logic [WIDTH-1:0] temp;
+    logic signed [WIDTH-1:0] temp;
 
     assign temp = in1-in2;
     assign out  = temp;
-
-    //assign temp = (out<0) ? 1 : 0;
+    
     assign neg = temp[WIDTH-1];
 
 endmodule

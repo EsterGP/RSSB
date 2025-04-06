@@ -17,7 +17,7 @@ module reg_mem #(
             out <= init;
         else if(write)
             out <= in;
-        else
-            out <= out;
+        //else
+            //out <= out;
     end
 endmodule

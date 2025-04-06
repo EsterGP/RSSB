@@ -16,7 +16,7 @@ module register #(
             out <= '0;
         else if(write)
             out <= in;
-        else
-            out <= out;
+        //else
+            //out <= out;
     end
 endmodule

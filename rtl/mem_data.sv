@@ -11,7 +11,7 @@ module mem_data #(
     input logic [WIDTH-1:0] address,
     output logic [WIDTH-1:0] out
 );
-    logic out_rom, out_ram;
+    logic [WIDTH-1:0] out_rom, out_ram;
 
     mux #(.WIDTH(WIDTH)) mux2_1(
         .in1(out_ram),
